@@ -1,0 +1,76 @@
+{{=<% %>=}}
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Springstaram</title>
+	<link rel="stylesheet" href="https://unpkg.com/bootstrap@3.3.7/dist/css/bootstrap.min.css">
+	<link rel="stylesheet" href="/css/detail.css">
+</head>
+<body>
+<div class="ss-container">
+	<div class="ss-title">
+		<a href="/">Springstaram</a>
+		<button class="ss-write btn btn-primary">
+			사진등록
+		</button>
+	</div>
+	<div class="row">
+		<div class="col-md-8 ss-detail-col">
+			<div class="ss-detail-box ss-detail-photo">
+				<div class="ss-photo"
+					style="background-image:url(/file/<%photo.id%>)">
+				</div>
+				<div class="ss-photo-buttons">
+					<div class="ss-btn ss-btn-likes">
+						좋아요 <span class="ss-photo-likes"><%photo.likes%></span>
+					</div>
+					<div class="ss-btn ss-btn-comments">
+						댓글 <span class="ss-comment-count"><%photo.commentCount %></span>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-4 ss-detail-col">
+			<div class="ss-detail-box ss-detail-text">
+				<div class="ss-photo-name"><%photo.name%></div>
+				<div class="ss-photo-content"><%photo.content%></div>
+				<div class="ss-photo-dt"></div>
+				<ul class="ss-comments">
+					<%#photo.comments %>
+					<li>
+						<span class="ss-comment-author"><% author %></span>
+						<span class="ss-comment-content"><% comment %></span>
+					</li>
+					<%/photo.comments %>
+				</ul>
+				<div class="ss-comment-form">
+					<input id="ss-comment-author" type="text" class="form-control" placeholder="작성자">
+					<textarea id="ss-comment-content" class="form-control" placeholder="댓글내용"></textarea>
+					<button class="ss-comment-write btn btn-success">댓글쓰기</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<input type="hidden" id="photo-id" value="<%photo.id%>" />
+<input type="hidden" id="update-dt" value="<%photo.updateDt%>" />
+
+<script id="comments-template" type="text/x-handlebars-template">
+{{#each this}}
+	<li>
+		<span class="ss-comment-author">{{author}}</span>
+		<span class="ss-comment-content">{{comment}}</span>
+	</li>
+{{/each}}
+</script>
+
+
+
+<script src="https://unpkg.com/jquery@3.2.1/dist/jquery.min.js"></script>
+<script src="https://unpkg.com/bootstrap@3.3.7/dist/js/bootstrap.min.js"></script>
+<script src="https://unpkg.com/handlebars@4.0.10/dist/handlebars.min.js"></script>
+<script src="https://unpkg.com/moment@2.18.1/min/moment.min.js"></script>
+<script src="https://unpkg.com/moment@2.18.1/locale/ko.js"></script>
+<script src="/js/detail.js"></script>

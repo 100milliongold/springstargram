@@ -9,4 +9,26 @@
 	VALUES
 		(#{id},#{name},#{content},0,NOW())
   </insert>
+  
+  <select id="selectPhotos" resultType="photoVO">
+  	SELECT p.id, p.name, p.content, p.likes, p.update_dt, COUNT(c.id) comment_count
+  		FROM tbl_photos p
+        LEFT JOIN tbl_comments c
+        ON p.id = c.photo_id
+	GROUP BY p.id 
+  	ORDER BY update_dt DESC;
+  </select>
+  
+  <update id="updateLike" parameterType="string" >
+  	UPDATE tbl_photos
+  		SET likes = likes + 1 
+  	WHERE id = #{id}
+  </update>
+  
+  <select id="selectPhoto" resultType="photoVO" parameterType="string" >
+  	SELECT id, name, content, likes, update_dt
+  		FROM tbl_photos
+  	WHERE id = #{id}
+  </select>
+  
 </mapper>

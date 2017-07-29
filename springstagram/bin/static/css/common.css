@@ -10,6 +10,10 @@ ul{
 	margin: 0px auto;
 }
 
+a:HOVER {
+	text-decoration: none;
+}
+
 .ss-title{
 	position: relative;
 	margin-bottom: 30px;
@@ -25,3 +29,4 @@ ul{
 	bottom: 0px;
 	font-family: 'MalgunGothic';
 }
+
